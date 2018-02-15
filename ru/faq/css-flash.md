@@ -1,12 +1,12 @@
 ---
-title: Мерцание CSS
-description: Почему появляется мерцание CSS с Nuxt.js?
+title: CSS Flash
+description: Why a CSS Flash appears with Nuxt.js?
 ---
 
-# Почему появляется мерцание CSS?
+# Why a CSS Flash appears?
 
 ![cssflash](/flash_css.gif)
 
-Это связано с тем, что CSS находится в сборке JavaScript в **режиме разработки** для горячей перезагрузки модулей с помощью Webpack.
+This is because the CSS is in the JavaScript build in **development mode** to allow hot-reloading via Webpack. This flash is called [FOUC](https://en.wikipedia.org/wiki/Flash_of_unstyled_content).
 
-Не беспокойтесь, в production режиме CSS извлекается и помещается в заголовок страницы, поэтому «мерцание» не появится.
+Don't worry in **production mode**, the CSS is separated and put in the header so this flash of unstyled content does not appear anymore.

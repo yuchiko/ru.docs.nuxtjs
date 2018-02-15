@@ -33,9 +33,9 @@ Module developers usually provide additional needed steps and details for usage.
 Nuxt.js tries to resolve each item in the modules array using node require path (in the `node_modules`) and then
 Will be resolved from project `srcDir` if `~` alias is used. Modules are executed sequential so the order is important.
 
-Modules should export a function to ehnahnce nuxt build/runtime and optionally return a promise until their job is finished.
+Modules should export a function to enhance nuxt build/runtime and optionally return a promise until their job is finished.
 Note that they are required at runtime so should be already transpiled if depending on modern ES6 features.
 
 
 Please see [Modules Guide](/guide/modules) for more detailed information on how they work or if interested developing your own module.
-Also we have provided an official [Modules](/modules) Section listing dozens of production ready modules made by Nuxt Community.
+Also we have provided an official [Modules](https://github.com/nuxt-community/awesome-nuxt#modules) Section listing dozens of production ready modules made by Nuxt Community.

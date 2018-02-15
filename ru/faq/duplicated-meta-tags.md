@@ -1,17 +1,18 @@
 ---
-title: Повторяющиеся meta-теги
-description: Повторяются мета-теги в Nuxt.js?
+title: Duplicated Meta tags
+description: Duplicated Meta tags with Nuxt.js?
 ---
 
-# Повторяющиеся meta-теги?
+# Duplicated Meta tags?
 
-Это «особенность» плагина [vue-meta](https://github.com/declandewet/vue-meta), пожалуйста посмотрите [документацию элементов head](/guide/views#html-head).
+This is a "feature" of [vue-meta](https://github.com/declandewet/vue-meta), please take a look at the [documentation of head elements](/guide/views#html-head).
 
-> Для избежания дублирования, при использовании в дочерних компонентах, указывайте уникальный идентификатор `hid`. [Подробнее](https://github.com/declandewet/vue-meta#lists-of-tags) об этом.
+> To avoid any duplication when used in child component, please give an unique identifier with the `hid` key, please [read more](https://github.com/declandewet/vue-meta#lists-of-tags) about it.
 
-Для meta-тега description, вам нужно добавить уникальный идентификатор `hid`, чтобы vue-meta смогла определить необходимость перезписи тега по умолчанию.
+For the meta description, you need to add the unique identifier `hid` so vue-meta will know that it has to overwrite the default tag.
 
-Ваш `nuxt.config.js`:
+Your `nuxt.config.js`:
+
 ```js
 ...head: {
     title: 'starter',
@@ -19,24 +20,25 @@ description: Повторяются мета-теги в Nuxt.js?
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { name: 'keywords', content: 'keyword 1, keyword 2'},
-      { hid: 'description', name: 'description', content: 'Это описание для страниц по умолчанию.'}
+      { hid: 'description', name: 'description', content: 'This is the generic description.'}
     ],
   },
 ...
 ```
 
-А затем на необходимой странице:
+An then in your individual page:
+
 ```js
 export default {
   head () {
     return {
-      title: `Страница 1 (${this.name}-side)`,
+      title: `Page 1 (${this.name}-side)`,
       meta: [
-        { hid: 'description', name: 'description', content: 'Описание для Страницы 1' }
+        { hid: 'description', name: 'description', content: 'Page 1 description' }
       ]
     }
   }
 }
 ```
 
-Подробнее как использовать свойство `head` на ваших страницах можно изучить в [документации HTML head](/guide/views#html-head).
+To learn how to use the `head` property in your pages, please see the [HTML head documentation](/guide/views#html-head).

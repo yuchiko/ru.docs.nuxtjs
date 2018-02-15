@@ -30,7 +30,8 @@
     "links": [
       { "name": "nuxt", "to": "/components-nuxt" },
       { "name": "nuxt-child", "to": "/components-nuxt-child" },
-      { "name": "nuxt-link", "to": "/components-nuxt-link" }
+      { "name": "nuxt-link", "to": "/components-nuxt-link" },
+      { "name": "no-ssr", "to": "/components-no-ssr" }
     ]
   },
   {
@@ -42,12 +43,12 @@
         "contents": [
           { "name": "analyze", "to": "#analyze" },
           { "name": "babel", "to": "#babel" },
-          { "name": "cssSourceMap", "to": "#css-source-map" },
+          { "name": "cssSourceMap", "to": "#csssourcemap" },
           { "name": "devMiddleware", "to": "#devmiddleware" },
           { "name": "extend", "to": "#extend" },
           { "name": "extractCSS", "to": "#extractcss" },
           { "name": "filenames", "to": "#filenames" },
-          { "name": "hotMiddleware", "to": "#hot-middleware" },
+          { "name": "hotMiddleware", "to": "#hotmiddleware" },
           { "name": "plugins", "to": "#plugins" },
           { "name": "postcss", "to": "#postcss" },
           { "name": "publicPath", "to": "#publicpath" },

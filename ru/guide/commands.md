@@ -1,28 +1,29 @@
 ---
-title: Команды и развёртывание
-description: Nuxt.js поставляется с набором полезных команд, как для разработки, так и для production.
+title: Commands and Deployment
+description: Nuxt.js comes with a set of useful commands, both for development and production purpose.
 ---
 
-> Nuxt.js поставляется с набором полезных команд, как для разработки, так и для production.
+> Nuxt.js comes with a set of useful commands, both for development and production purpose.
 
-## Список команд
+## List of Commands
 
-| Команда         | Описание                                                                                                 |
-|-----------------|----------------------------------------------------------------------------------------------------------|
-| nuxt            | Запускает сервер разработки по адресу [localhost:3000](http://localhost:3000) с горячей заменой модулей. |
-| nuxt build      | Собирает ваше приложение с webpack и минификацией JS & CSS (для production).                             |
-| nuxt start      | Запускает сервер в режиме production (После запуска `nuxt build`).                                       |
-| nuxt generate   | Собирает приложение и генерирует HTML-файл для каждого маршрута (используется для статичного хостинга).  |
+| Command         | Description                                                                              |
+|-----------------|------------------------------------------------------------------------------------------|
+| nuxt            | Launch a development server on localhost:3000 with hot-reloading.                        |
+| nuxt build      | Build your application with webpack and minify the JS & CSS (for production).            |
+| nuxt start      | Start the server in production mode (after running `nuxt build`).                        |
+| nuxt generate   | Build the application and generate every route as a HTML file (used for static hosting). |
 
-#### Аргументы
-Вы можете использовать `--help` с любой командой для получения подробной информации об использовании. Общие аргументы:
+#### Arguments
 
-- **`--config-file` или `-c`:** Для указания пути к файлу `nuxt.config.js`.
-- **`--spa` или `-s`:** Запуск команды в режиме SPA и отключением рендеринга на стороне сервера.
+You can use `--help` with any command to get detailed usage. Common arguments are:
 
-#### Использование в package.json
+- **`--config-file` or `-c`:** specify the path to `nuxt.config.js` file.
+- **`--spa` or `-s`:** Runs command in SPA mode by disabling server side rendering.
 
-Вы можете поместить эти команды в файл `package.json`:
+#### Using in package.json
+
+You should put these commands in the `package.json`:
 
 ```json
 "scripts": {
@@ -33,34 +34,35 @@ description: Nuxt.js поставляется с набором полезных
 }
 ```
 
-После этого, вы можете запускать ваши команды через `npm run <command>` (например: `npm run dev`).
+Then, you can launch your commands via `npm run <command>` (example: `npm run dev`).
 
-**Совет:** Чтобы передать аргументы в команду npm, вам потребуется дополнительные `--` после названия скрипта (например: `npm run dev -- --spa`)
+<p class="Alert Alert--nuxt-green"><b>Pro tip:</b> to pass arguments to npm commands, you need an extra <code>--</code> script name (example: <code>npm run dev -- --spa</code>).</p>
 
-## Окружение для разработки
+## Development Environment
 
-Для запуска Nuxt в режиме разработки с горячей перезагрузкой модулей:
+To launch Nuxt in development mode with hot reloading:
 
 ```bash
 nuxt
-// ИЛИ
+// OR
 npm run dev
 ```
 
-## Развёртывание для Production
+## Production Deployment
 
-Nuxt.js предоставляет вам выбор между 3 режимами развёртывания вашего приложения: Рендеринг на стороне сервера, SPA или статично сгенерированное.
+Nuxt.js lets your choose between three modes to deploy your application: Server Rendered, SPA or Static Generated.
 
-### Развёртывание с рендерингом на стороне сервера (Универсальное)
+### Server Rendered Deployment (Universal)
 
-Для развёртывания, вместо запуска nuxt, вы возможно захотите собрать приложение заранее. Поэтому сборка и запуск — это разные команды:
+To deploy, instead of running `nuxt`, you probably want to build ahead of time. Therefore, building and starting are separate commands:
 
 ```bash
 nuxt build
 nuxt start
 ```
 
-Файл `package.json` должен выглядеть примерно так:
+The `package.json` like follows is recommended:
+
 ```json
 {
   "name": "my-app",
@@ -75,11 +77,11 @@ nuxt start
 }
 ```
 
-Примечание: мы рекомендуем добавить `.nuxt` в `.npmignore` или `.gitignore`.
+Note: we recommend putting `.nuxt` in `.npmignore` or `.gitignore`.
 
 ### Static Generated Deployment (Pre Rendered)
 
-Nuxt.js gives you the possibility to host your web application on any static hosting.
+Nuxt.js gives you the ability to host your web application on any static hosting.
 
 To generate our web application into static files:
 
@@ -87,30 +89,26 @@ To generate our web application into static files:
 npm run generate
 ```
 
-It will create a `dist` folder with everything inside ready to be deployed on a static hosting.
+It will create a `dist` folder with everything inside ready to be deployed on a static hosting site.
 
-If you have a project with [dynamic routes](/guide/routing#dynamic-routes), take a look at the [generate configuration](/api/configuration-generate) to tell nuxt.js how to generate these dynamic routes.
+If you have a project with [dynamic routes](/guide/routing#dynamic-routes), take a look at the [generate configuration](/api/configuration-generate) to tell Nuxt.js how to generate these dynamic routes.
 
 <div class="Alert">When generating your web application with `nuxt generate`, [the context](/api/context) given to [data()](/guide/async-data#the-data-method) and [fetch()](/guide/vuex-store#the-fetch-method) will not have `req` and `res`.</div>
 
 ### Single Page Application Deployment (SPA)
 
-`nuxt generate` still needs SSR engine during build/generate time
-While having the pro that all of our pages are pre rendered and having a high SEO and page load score,
-the content is generated at *build time*. For example, we can't use it for applications
-where content depends on user authentication or a real time API (at least for the first load).
+`nuxt generate` still needs SSR engine during build/generate time while having the advantage of having all our pages pre rendered, and have a high SEO and page load score. The content is generated at *build time*. For example, we can't use it for applications where content depends on user authentication or a real time API (at least for the first load).
 
-The SPA idea is simple! When spa mode is enabled using `mode: 'spa'` or `--spa` flag and we run build,
-generation automatically starts after the build, but this time without pages content and only common meta and resource links.
+The SPA idea is simple! When SPA mode is enabled using `mode: 'spa'` or `--spa` flag, and we run build, generation automatically starts after the build. This generation contains common meta and resource links, but not page content.
 
-So for an SPA deployment:
- - Change `mode` in `nuxt.config.js` to `spa`
- - Run `npm run build`
- - Deploy the created `dist/` folder to your static hosting like surge or github pages or nginx.
+So, for an SPA deployment, you must do the following:
 
-Another possible deployment is that we can use nuxt as a middleware in frameworks while mode is `spa`.
-This helps reduce server loads and using nuxt in projects where SSR is not possible.
+ - Change `mode` in `nuxt.config.js` to `spa`.
+ - Run `npm run build`.
+ - Deploy the created `dist/` folder to your static hosting like Surge, GitHub Pages or nginx.
 
+Another possible deployment method is to use Nuxt as a middleware in frameworks while in `spa` mode. This helps reduce server load and uses Nuxt in projects where SSR is not possible.
 
-<div class="Alert">See [FAQ/Deployments](/faq/heroku-deployment) for examples of deployment to popular hosts.</div>
+<div class="Alert">See [How to deploy on Heroku?](/faq/heroku-deployment) for examples of deployment to popular hosts.</div>
 
+<div class="Alert">See [How to deploy on GitHub Pages?](/faq/github-pages) for more details on how to deploy to GitHub Pages.</div>
