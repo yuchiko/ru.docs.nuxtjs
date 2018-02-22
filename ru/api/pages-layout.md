@@ -1,28 +1,28 @@
 ---
-title: "API: The layout Property"
-description: Every file (first level) in the `layouts` directory will create a custom layout accessible with the layout property in the page component.
+title: "API: layout свойство"
+description: Каждый файл (первого уровня) в каталоге `layouts` создаёт пользовательский layout, создаёт пользовательский шаблон, доступный через свойство layout в компонентах страниц.
 ---
 
-# The layout Property
+# layout свойство
 
-> Every file (first level) in the layouts directory will create a custom layout accessible with the layout property in the page component.
+> Каждый файл (первого уровня) в каталоге `layouts` создаёт пользовательский layout, создаёт пользовательский шаблон, доступный через свойство layout в компонентах страниц.
 
-- **Type:** `String` or `Function` (default: `'default'`)
+- **Тип:** `String` или `Function` (По-умолчанию: `'default'`)
 
-Use the `layout` key in your pages components to define which layout to use:
+Используйте `layout` ключ в ваших компонент страницах, чтобы определить, какой шаблон будет использоваться: 
 
 ```js
 export default {
   layout: 'blog',
-  // OR
+  // ИЛИ
   layout (context) {
     return 'blog'
   }
 }
 ```
 
-In this example, Nuxt.js will include the `layouts/blog.vue` file as a layout for this page component.
+В этом примере, Nuxt.js подключит файл `layouts/blog.vue` в качестве шаблона для этой компонент страницы.
 
-Check the [demonstration video](https://www.youtube.com/watch?v=YOKnSTp7d38) to see it in action.
+Просмотрите [демонстрационное видео](https://www.youtube.com/watch?v=YOKnSTp7d38) чтобы увидеть это в действии.
 
-To understand how the layouts work with Nuxt.js, take a look at the [layout documentation](/guide/views#layouts).
+Чтобы понять, как layouts работают с Nuxt.js, взгляните на [layout документацию](/guide/views#layouts).
