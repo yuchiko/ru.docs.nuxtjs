@@ -1,19 +1,19 @@
 ---
 title: "API: nuxt.render(req, res)"
-description: You can use Nuxt.js as a middleware for your Node.js server.
+description: Вы можете использовать Nuxt.js как middleware для вашего Node.js сервера.
 ---
 
 # nuxt.render(req, res)
 
-- Type: `Function`
-- Arguments:
+- Тип: `Function`
+- Аргументы:
   1. [Request](https://nodejs.org/api/http.html#http_class_http_incomingmessage)
   2. [Response](https://nodejs.org/api/http.html#http_class_http_serverresponse)
-- Returns: `Promise`
+- Результат: `Promise`
 
-> You can use Nuxt.js as a middleware with `nuxt.render` for your node.js server.
+> Вы можете с помощью `nuxt.render` использовать Nuxt.js как middleware для вашего Node.js сервера.
 
-Example with [Express](https://github.com/expressjs/express):
+Пример с [Express](https://github.com/expressjs/express):
 
 ```js
 const { Nuxt, Builder } = require('nuxt')
@@ -22,15 +22,15 @@ const app = require('express')()
 const isProd = (process.env.NODE_ENV === 'production')
 const port = process.env.PORT || 3000
 
-// We instantiate nuxt.js with the options
+// Мы создаем экземпляр nuxt.js с параметрами
 const config = require('./nuxt.config.js')
 config.dev = !isProd
 const nuxt = new Nuxt(config)
 
-// Render every route with Nuxt.js
+// Рендерим каждый маршрут с Nuxt.js
 app.use(nuxt.render)
 
-// Build only in dev mode with hot-reloading
+// Создаём сборку только в dev режиме с hot-reloading
 if (config.dev) {
   new Builder(nuxt).build()
   .then(listen)
@@ -44,10 +44,10 @@ else {
 }
 
 function listen() {
-  // Listen the server
+  // Слушаем сервер
   app.listen(port, '0.0.0.0')
   console.log('Server listening on `localhost:' + port + '`.')
 }
 ```
 
-<p class="Alert">It's recommended to call `nuxt.render` at the end of your middlewares since it will handle the rendering of your web application and won't call `next()`</p>
+<p class="Alert">Рекомендовано вызывать `nuxt.render` в конце вашего middlewares, поскольку функция будет обрабатывать рендеринг вашего веб приложения и не вызовет `next()`</p>
