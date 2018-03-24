@@ -9,7 +9,7 @@ description: Вы можете использовать Nuxt.js как middlewar
 - Аргументы:
   1. [Request](https://nodejs.org/api/http.html#http_class_http_incomingmessage)
   2. [Response](https://nodejs.org/api/http.html#http_class_http_serverresponse)
-- Результат: `Promise`
+- Возвращает: `Promise`
 
 > Вы можете с помощью `nuxt.render` использовать Nuxt.js как middleware для вашего Node.js сервера.
 
@@ -50,4 +50,4 @@ function listen() {
 }
 ```
 
-<p class="Alert">Рекомендовано вызывать `nuxt.render` в конце вашего middlewares, поскольку функция будет обрабатывать рендеринг вашего веб приложения и не вызовет `next()`</p>
+<p class="Alert">Рекомендовано вызывать `nuxt.render` после всех других middleware, поскольку функция будет обрабатывать рендеринг вашего веб приложения и не вызовет `next()`</p>
