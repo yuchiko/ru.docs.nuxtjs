@@ -1,15 +1,15 @@
 ---
-title: "API: The env Property"
-description: Share environment variables between client and server.
+title: "API: Свойство env"
+description: Использование переменных окружения на сервере и клиенте.
 ---
 
-# The env Property
+# Свойство env
 
-- Type: `Object`
+- Тип: `Object`
 
-> Nuxt.js lets you create environment variables that will be shared for the client and server-side.
+> Nuxt.js позволяет создавать переменные окружения, доступные и на клиенте, и на сервере
 
-Example (`nuxt.config.js`):
+Пример (`nuxt.config.js`):
 
 ```js
 module.exports = {
@@ -19,16 +19,16 @@ module.exports = {
 }
 ```
 
-This lets me create a `baseUrl` property that will be equal to the `BASE_URL` environment variable if defined, otherwise, equal to `http://localhost:3000`.
+В объект env помещается свойство `baseUrl`, которое хранит либо значение переменной окружения `BASE_URL` (если оно существует), либо `http://localhost:3000`.
 
-Then, I can access my `baseUrl` variable with 2 ways:
+Теперь обратиться к переменной `baseUrl` можно двумя способами:
 
-1. Via `process.env.baseUrl`
-2. Via `context.env.baseUrl`, see [context api](/api/context)
+1. На сервере, с помощью объекта process: `process.env.baseUrl`
+2. На клиенте, с помощью объекта context: `context.env.baseUrl`. Подробнее в разделе [API Context](/api/context)
 
-You can use the `env` property for giving public token for example.
 
-For the example above, we can use it to configure [axios](https://github.com/mzabriskie/axios).
+Свойство `env` можно использовать, например, для выдачи публичного токена.
+А еще переменные окружения можно использовать для конфигурации плагинов, например [axios](https://github.com/axios/axios).
 
 `plugins/axios.js`:
 ```js
@@ -39,21 +39,22 @@ export default axios.create({
 })
 ```
 
-Then, in your pages, you can import axios like this: `import axios from '~/plugins/axios'`
+Затем просто импортируйте плагин на любой странице: `import axios from '~/plugins/axios'`
 
 ## process.env == {}
-Note that nuxt uses webpack's `definePlugin` to define the environmental variable. This means that, the actual `process` or `process.env` from node is not available and is not defined. Each of the env properties defined in nuxt.config.js is individually mapped to process.env.xxxx and converted during compilation. 
 
-Meaning, `console.log(process.env)` will output `{}` but `console.log(process.env.you_var)` will still output your value. When webpack compiles your code, it replaces all instances of `process.env.your_var` to the value you've set it to. ie: `env.test = 'testing123'`. If you use `process.env.test` in your code somewhere, it is actually translated to 'testing123'.
+Обратите внимание: Nuxt использует `definePlugin` из webpack для объявления переменных окружения. Это значит, что `process` или `process.env` из Node недоступен и не определен. Каждое свойство env определено в nuxt.config.js и сопоставляется с process.env.xxx.
 
-before
+Это значит, что `console.log(process.env)` выведет `{}`, но `console.log(process.env.you_var)` будет выводить заданное в nuxt.config.js значение. Если вы зададите `env.test = 'testing123'` и обратитесь к нему через `process.env.test`, то на самом деле оно будет переведено в 'testing123'.
+
+
+
+До
 ```
 if (process.env.test == 'testing123')
 ```
 
-after
+После
 ```
 if ('testing123' == 'testing123')
 ```
-
-
