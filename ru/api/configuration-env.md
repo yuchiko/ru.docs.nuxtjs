@@ -24,11 +24,11 @@ module.exports = {
 Теперь обратиться к переменной `baseUrl` можно двумя способами:
 
 1. На сервере, с помощью объекта process: `process.env.baseUrl`
-2. На клиенте, с помощью объекта context: `context.env.baseUrl`. Читайте [API Context](/api/context)
+2. На клиенте, с помощью объекта context: `context.env.baseUrl`. Подробнее в разделе [API Context](/api/context)
 
 
 Свойство `env` можно использовать, например, для выдачи публичного токена.
-А еще переменные среды можно использовать для конфигурации плагинов, например [axios](https://github.com/mzabriskie/axios).
+А еще переменные среды можно использовать для конфигурации плагинов, например [axios](https://github.com/axios/axios).
 
 `plugins/axios.js`:
 ```js
@@ -39,11 +39,11 @@ export default axios.create({
 })
 ```
 
-Затем просто импортируйте плагин: `import axios from '~/plugins/axios'`
+Затем просто импортируйте плагин на любой странице: `import axios from '~/plugins/axios'`
 
 ## process.env == {}
 
-Nuxt  использует `definePlugin` из webpack для объявления переменных среды. Это значит, что `process` или `process.env` из Node недоступен и не определен. Каждое свойство env определено в nuxt.config.js и сопоставляется с process.env.xxx.
+Обратите внимание: Nuxt  использует `definePlugin` из webpack для объявления переменных среды. Это значит, что `process` или `process.env` из Node недоступен и не определен. Каждое свойство env определено в nuxt.config.js и сопоставляется с process.env.xxx.
 
 Это значит, что  `console.log(process.env)`  выведет `{}`, но `console.log(process.env.you_var)`  будет выводить заданное в nuxt.config.js значение. Если вы зададите `env.test = 'testing123'` и обратитесь к нему через `process.env.test`, то на самом деле оно будет переведено в  'testing123'.
 
