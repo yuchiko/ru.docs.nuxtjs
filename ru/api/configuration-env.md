@@ -43,9 +43,9 @@ export default axios.create({
 
 ## process.env == {}
 
-Обратите внимание: Nuxt  использует `definePlugin` из webpack для объявления переменных окружения. Это значит, что `process` или `process.env` из Node недоступен и не определен. Каждое свойство env определено в nuxt.config.js и сопоставляется с process.env.xxx.
+Обратите внимание: Nuxt использует `definePlugin` из webpack для объявления переменных окружения. Это значит, что `process` или `process.env` из Node недоступен и не определен. Каждое свойство env определено в nuxt.config.js и сопоставляется с process.env.xxx.
 
-Это значит, что  `console.log(process.env)`  выведет `{}`, но `console.log(process.env.you_var)`  будет выводить заданное в nuxt.config.js значение. Если вы зададите `env.test = 'testing123'` и обратитесь к нему через `process.env.test`, то на самом деле оно будет переведено в  'testing123'.
+Это значит, что `console.log(process.env)` выведет `{}`, но `console.log(process.env.you_var)` будет выводить заданное в nuxt.config.js значение. Если вы зададите `env.test = 'testing123'` и обратитесь к нему через `process.env.test`, то на самом деле оно будет переведено в 'testing123'.
 
 
 
