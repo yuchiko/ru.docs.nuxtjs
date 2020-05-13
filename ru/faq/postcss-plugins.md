@@ -11,9 +11,9 @@ description: Как добавить PostCSS плагины?
 module.exports = {
   build: {
     postcss: [
-      require('postcss-nested')(),
-      require('postcss-responsive-type')(),
-      require('postcss-hexrgba')(),
+      'postcss-nested': {},
+      'postcss-responsive-type': {},
+      'postcss-hexrgba': {},
     ]
   }
 }
